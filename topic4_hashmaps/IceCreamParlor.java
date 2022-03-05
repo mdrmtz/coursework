@@ -1,12 +1,8 @@
-import java.io.*;
 import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
 
-public class Solution {
+public class IceCreamParlor {
 
-    static int[] icecreamParlorBasicSolution(int m, int[] arr) {
+    static int[] iceCreamParlorBasicSolution(int m, int[] arr) {
         int iceCreamOne = 0;
         int iceCreamTwo = 0;
         for (int i = 0; i < arr.length - 1; i++) {
@@ -20,16 +16,15 @@ public class Solution {
         }
         iceCreamOne++;
         iceCreamTwo++;
-        int iceCreams[] = {iceCreamOne, iceCreamTwo};
-        return iceCreams;
+        return new int[]{iceCreamOne, iceCreamTwo};
     }
 
     // If we think about it, this turns into a search problem. We are trying to look to
     // elements such as m = element1 + element2; for each item in the array (element1),
-    // element2 will be m - element1. Knowing that, instead of having an inner loop (for inside of a for loop)
-    // that will take O(N ^ 2) to run, we can take a little bit of memory hit, and create a hashMap with
+    // element2 will be m - element1. Knowing that, instead of having an inner loop (for inside a for loop)
+    // that will take O(N ^ 2) to run, we can take a little of memory hit, and create a hashMap with
     // each of the items of the array to avoid the second loop. Let's look at the solution.
-    static int[] icecreamParlor(int m, int[] arr) {
+    static int[] iceCreamParlor(int m, int[] arr) {
         int iceCreamOne = 0;
         int iceCreamTwo = 0;
         Map<Integer, List<Integer>> costToIndex = createMap(arr);
@@ -52,11 +47,10 @@ public class Solution {
         }
         iceCreamOne++;
         iceCreamTwo++;
-        int [] iceCreams = {iceCreamOne, iceCreamTwo};
-        return iceCreams;
+        return new int[]{iceCreamOne, iceCreamTwo};
     }
 
-    private static Map<Integer, List<Integer>> createMap(int arr []) {
+    private static Map<Integer, List<Integer>> createMap(int[] arr) {
         Map<Integer, List<Integer>> costToIndex = new HashMap<>(arr.length);
         for (int i = 0; i < arr.length; i++) {
             // They say that some elements might have the same cost. And
@@ -64,7 +58,7 @@ public class Solution {
             // Therefore, if the cost is already in our map, we will append it into a
             // LinkedList
             if (!costToIndex.containsKey(arr[i])) {
-                List<Integer> indexList = new LinkedList<Integer>();
+                List<Integer> indexList = new LinkedList<>();
                 indexList.add(i);
                 costToIndex.put(arr[i], indexList);
             } else {
@@ -84,11 +78,11 @@ public class Solution {
             for(int arr_i = 0; arr_i < n; arr_i++){
                 arr[arr_i] = in.nextInt();
             }
-            int[] result = icecreamParlor(m, arr);
+            int[] result = iceCreamParlor(m, arr);
             for (int i = 0; i < result.length; i++) {
                 System.out.print(result[i] + (i != result.length - 1 ? " " : ""));
             }
-            System.out.println("");
+            System.out.println();
 
 
         }

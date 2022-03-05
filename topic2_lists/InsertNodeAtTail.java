@@ -16,18 +16,24 @@
 * Our solution. Please note that there could always be more than one.
 *
 */
-Node Insert(Node head,int data) {
-    Node tail = new Node();
-    tail.data = data;
-    if (head == null) {
-        return tail;
+
+public class InsertNodeAtTail {
+    SinglyLinkedListNode insert(SinglyLinkedListNode head, int data) {
+        SinglyLinkedListNode tail = new SinglyLinkedListNode(data);
+        if (head == null) {
+            return tail;
+        }
+
+        SinglyLinkedListNode trackingNode = head;
+
+        while (trackingNode.next != null) {
+            trackingNode = trackingNode.next;
+        }
+        trackingNode.next = tail;
+        return head;
     }
 
-    Node trackingNode = head;
+    public static void main(String[] args) {
 
-    while (trackingNode.next != null) {
-        trackingNode = trackingNode.next;
     }
-    trackingNode.next = tail;
-    return head;
 }

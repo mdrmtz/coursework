@@ -1,14 +1,10 @@
-import java.io.*;
-import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
+import java.util.Scanner;
 
-public class Solution {
+public class DesignerPDFViewer {
 
     static int designerPdfViewer(int[] h, String word) {
         int maxHeight = 0;
-        int index = 0;
+        int index;
         for (int i = 0; i < word.length(); i++) {
             // note that characters can be treated as numbers. 'b' -'a' = 1. 
             index = word.charAt(i) - 'a'; 

@@ -1,7 +1,6 @@
-import java.io.*;
 import java.util.*;
 
-public class Solution {
+public class SwapNodes {
     static class Node {
         int value;
         int left;
@@ -11,20 +10,6 @@ public class Solution {
 
     private static List<Node> mNodes;
     private static int maxDepth = 0;
-
-    public static void main(String[] args) {
-        final Scanner scanner = new Scanner(System.in);
-        int numberNodes = scanner.nextInt();
-        scanner.nextLine();
-        mNodes = new ArrayList<>(numberNodes);
-
-        buildTree(numberNodes, scanner);
-        int t = Integer.parseInt(scanner.nextLine());
-        while (t > 0) {
-            performSwap(scanner);
-            t--;
-        }
-    }
 
     private static void buildTree(int numberNodes, Scanner scanner) {
         Node root = new Node();
@@ -89,6 +74,20 @@ public class Solution {
         System.out.print(node.value + " ");
         if (node.right != -1) {
             printInOrder(mNodes.get(node.right - 1));
+        }
+    }
+
+    public static void main(String[] args) {
+        final Scanner scanner = new Scanner(System.in);
+        int numberNodes = scanner.nextInt();
+        scanner.nextLine();
+        mNodes = new ArrayList<>(numberNodes);
+
+        buildTree(numberNodes, scanner);
+        int t = Integer.parseInt(scanner.nextLine());
+        while (t > 0) {
+            performSwap(scanner);
+            t--;
         }
     }
 }

@@ -1,10 +1,6 @@
-import java.io.*;
-import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
+import java.util.Scanner;
 
-public class Solution {
+public class InsertionSortPart2 {
 
     // In this exercise I am going to reuse the method that I wrote for the part2.
     // I will modify n (the further most to the right element to consider).
@@ -43,8 +39,8 @@ public class Solution {
     }
 
     private static void printArray(int [] arr) {
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
+        for (int j : arr) {
+            System.out.print(j + " ");
         }
         System.out.println();
     }

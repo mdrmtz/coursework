@@ -3,4 +3,4 @@ This coursework is designed for you to get a solid understanding of data structu
 
 ## Notes
 - Each exercise could take you up to 1 hours. Total duration estimation is 30 hours.
-- These solutions are writen in Java, but you will be able to use your language of preference if you ever decide to do an interview.
+- These solutions are written in Java, but you will be able to use your language of preference if you ever decide to do an interview.

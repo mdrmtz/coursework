@@ -1,10 +1,21 @@
-import java.io.*;
-import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
+import java.util.List;
+import java.util.Scanner;
 
-public class Solution {
+public class InsertionSortPartI {
+
+    public static void insertionSort1(int n, List<Integer> arr) {
+        int elementToSort = arr.get(n-1);
+
+        for(int currentIndex=n-2; currentIndex>=0; currentIndex--) {
+            //copy the value at the lower index to
+            //the current index and print your array.
+            int value = arr.get(currentIndex);
+
+            arr.set(currentIndex + 1, Math.max(value, elementToSort));
+
+            printArray(arr);
+        }
+    }
 
     static void insertionSort1(int n, int[] arr) {
         int elementToSort = arr[arr.length - 1];
@@ -33,9 +44,17 @@ public class Solution {
     }
 
     private static void printArray(int [] arr) {
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
+        for (int n : arr) {
+            System.out.print(n + " ");
         }
+        System.out.println();
+    }
+
+    private static void printArray(List<Integer> list) {
+        for(Integer n: list){
+            System.out.print(n + " ");
+        }
+
         System.out.println();
     }
 }

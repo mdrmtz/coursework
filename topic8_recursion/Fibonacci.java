@@ -1,6 +1,8 @@
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
-public class Solution {
+public class Fibonacci {
 
     public static int fibonacciSimpleSolution(int n) {
         if (n == 0) {
@@ -17,7 +19,7 @@ public class Solution {
     * we don't have to compute them again when calling fibonacci(n - 2). Note this could
     * also be an ArrayList
     */
-    public static Map<Integer, Integer> fibonacciResults = new HashMap<Integer, Integer>();
+    public final static Map<Integer, Integer> fibonacciResults = new HashMap<>();
     public static int fibonacci(int n) {
         if (fibonacciResults.get(n) != null) {
             return fibonacciResults.get(n);
@@ -38,5 +40,7 @@ public class Solution {
         int n = scanner.nextInt();
         scanner.close();
         System.out.println(fibonacci(n));
+
+        System.out.println(Fibonacci.fibonacciSimpleSolution(5)) ;
     }
 }

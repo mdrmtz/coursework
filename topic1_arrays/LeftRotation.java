@@ -1,12 +1,41 @@
-import java.io.*;
-import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-public class Solution {
+public class LeftRotation {
+
+    public static List<Integer> rotateLeft(int d, List<Integer> arr) {
+        int n = arr.size();
+        return Stream.concat(arr.subList(d,n).stream(), arr.subList(0,d).stream())
+                .collect(Collectors.toList());
+    }
 
     static int[] leftRotation(int[] a, int d) {
+
+        /*
+        *
+        *
+        *
+                             *
+        // Creating temp array of size d
+        // Copying first d element in array temp
+        List<Integer> temp = new ArrayList<>(arr);
+
+        // Moving the rest element to index
+        // zero to N-d
+        for (int i = d; i < n; i++) {
+            arr.set(i - d , arr.get(i));
+        }
+
+        // Copying the temp array element
+        // in original array
+        for (int i = 0; i < d; i++) {
+            arr.set(i + n - d, temp.get(i));
+        }
+
+        return arr;
+        * */
         // They say in requirements that these inputs should not be considered.
         // However, noting that we should prevent against those.
         if (d == 0 || a.length == 0) {
@@ -30,7 +59,7 @@ public class Solution {
     /**
     * Takes care of the case where the rotation index. You have to take into account
     * how it is rotated towards the left. To compute index of B, we rotate towards the right.
-    * If we were to do a[i] in the loop, then these method would need to be slightly chnaged
+    * If we were to do a[i] in the loop, then this method would need to be slightly changed
     * to compute index of b.
     */
     private static int indexHelper(int index, int length) {
@@ -53,7 +82,7 @@ public class Solution {
         for (int i = 0; i < result.length; i++) {
             System.out.print(result[i] + (i != result.length - 1 ? " " : ""));
         }
-        System.out.println("");
+        System.out.println();
 
 
         in.close();

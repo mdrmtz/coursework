@@ -1,7 +1,6 @@
-import java.io.*;
 import java.util.*;
 
-public class Solution {
+public class CorrectnessAndTheLoopInvariant {
 
     public static void insertionSort(int[] A){
         for(int i = 1; i < A.length; i++){
@@ -32,5 +31,6 @@ public class Solution {
             ar[i]=in.nextInt();
         }
         insertionSort(ar);
+        in.close();
     }
 }

@@ -1,10 +1,26 @@
-import java.io.*;
 import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
 
-public class Solution {
+public class MigratoryBirds {
+
+    /*
+     * Complete the 'migratoryBirds' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts INTEGER_ARRAY arr as parameter.
+     */
+
+    public static int migratoryBirds(List<Integer> arr) {
+        Map<Integer,Integer> map = new HashMap<>();
+        for(Integer n : arr ) {
+            if(map.containsKey(n)){
+                map.put(n, map.get(n)+1);
+            }else {
+                map.put(n, 1);
+            }
+        }
+
+        return Collections.max(map.entrySet(), Map.Entry.comparingByValue()).getKey();
+    }
 
     static int migratoryBirds(int n, int[] ar) {
         if (n == 0) {

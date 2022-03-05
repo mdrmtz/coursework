@@ -1,34 +1,21 @@
-import java.io.*;
+
 import java.util.*;
 
-public class Solution {
-    private static int mNLad;
-    private static int mNSna;
+public class SnakesAndLadders {
     private static Map<Integer, Integer> mLadPos;
     private static Map<Integer, Integer> mSnaPos;
-    private static Map<Integer, Integer> visited;
-
-    public static void main(String[] args) {
-        final Scanner scanner = new Scanner(System.in);
-        int numberTests = scanner.nextInt();
-        while (numberTests > 0) {
-            parseArguments(scanner);
-            System.out.println(printNumberDice());
-            numberTests--;
-        }
-    }
 
     private static int printNumberDice() {
         Queue<Integer> queue = new LinkedList<>();
-        visited = new HashMap<>();
+        Map<Integer, Integer> visited = new HashMap<>();
         visited.put(1, 0);
         queue.add(1);
-        while(!queue.isEmpty()) {
+        while (!queue.isEmpty()) {
             Integer element = queue.remove();
             if (element == 100) {
                 return visited.get(100);
             }
-            for (Integer i = 1; i <= 6; i++) {
+            for (int i = 1; i <= 6; i++) {
                 Integer pos = i + element;
                 if (mLadPos.containsKey(pos)) {
                     pos = mLadPos.get(pos);
@@ -48,17 +35,17 @@ public class Solution {
     }
 
     private static void parseArguments(Scanner scanner) {
-        mNLad = scanner.nextInt();
+        int mNLad = scanner.nextInt();
         int start;
         int end;
-        mLadPos = new HashMap<Integer, Integer>(mNLad);
+        mLadPos = new HashMap<>(mNLad);
         for (int i = 0; i < mNLad; i++) {
             start = scanner.nextInt();
             end = scanner.nextInt();
             mLadPos.put(start, end);
         }
-        mNSna = scanner.nextInt();
-        mSnaPos = new HashMap<Integer, Integer>(mNSna);
+        int mNSna = scanner.nextInt();
+        mSnaPos = new HashMap<>(mNSna);
         for (int i = 0; i < mNSna; i++) {
             start = scanner.nextInt();
             end = scanner.nextInt();
@@ -66,4 +53,13 @@ public class Solution {
         }
     }
 
+    public static void main(String[] args) {
+        final Scanner scanner = new Scanner(System.in);
+        int numberTests = scanner.nextInt();
+        while (numberTests > 0) {
+            parseArguments(scanner);
+            System.out.println(printNumberDice());
+            numberTests--;
+        }
+    }
 }

@@ -1,15 +1,64 @@
-public class Solution {
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+/*
+
+For Given Number N find if its COLORFUL number or not
+
+Return 0/1
+
+COLORFUL number:
+
+A number can be broken into different contiguous sub-subsequence parts.
+Suppose, a number 3245 can be broken into parts like 3 2 4 5 32 24 45 324 245.
+And this number is a COLORFUL number, since product of every digit of a contiguous subsequence is different
+Example:
+
+N = 23
+2 3 23
+2 -> 2
+3 -> 3
+23 -> 6
+this number is a COLORFUL number since product of every digit of a sub-sequence are different.
+
+Output : 1
+ */
+public class ColorfulNumber {
+
+    public int isColorful(int a) {
+        Set<Long> st = new HashSet<>();
+        String s = String.valueOf(a);
+
+        for (int i = 0; i < s.length(); i++) {
+            long product = 1;
+            for (int j = i; j < s.length(); j++) {
+                // convert string "3" into 3 number.
+                int n = s.charAt(j) - '0';
+                product *= n;
+
+                if (st.contains(product)) {
+                    return 0;
+                }
+
+                st.add(product);
+            }
+        }
+        return 1;
+    }
+
     public int colorful(int A) {
         // First let's create a collection of all the items that we need to evaluate
         // the product of.
         // In order to do this, I am going to put each of the digits in
         // an array
 
-        int mod = 0;
+        int mod;
         int remaining = A;
 
-        int index = 0;
-        List<Integer> digits = new ArrayList<Integer>();
+        int index;
+        List<Integer> digits = new ArrayList<>();
 
         while (remaining > 0) {
             mod = remaining % 10;
@@ -29,10 +78,10 @@ public class Solution {
         // you look at a solution and it looks really simple, in programming
         // simplicity is the hardest, and can only be achieved after you master
         // your skills :)
-        Set<Integer> productsStore = new HashSet<Integer>();
+        Set<Integer> productsStore = new HashSet<>();
         int groupingOf = 1;
         while (groupingOf <= digits.size()) {
-            for (int i = digits.size() - 1; i >=0 ; i--) {
+            for (int i = digits.size() - 1; i >= 0; i--) {
                 int product = digits.get(i);
                 boolean outOfBound = false;
                 for (int j = i - 1; j >= i - (groupingOf - 1); j--) {
@@ -52,10 +101,19 @@ public class Solution {
                 } else {
                     productsStore.add(product);
                 }
-             }
+            }
 
             groupingOf++;
         }
         return 1;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new ColorfulNumber().colorful(3245));
+        System.out.println(new ColorfulNumber().colorful(23));
+        System.out.println(new ColorfulNumber().colorful(10));
+        System.out.println(new ColorfulNumber().isColorful(3245));
+        System.out.println(new ColorfulNumber().isColorful(23));
+        System.out.println(new ColorfulNumber().isColorful(10));
     }
 }

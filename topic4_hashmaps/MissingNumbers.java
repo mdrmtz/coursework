@@ -1,14 +1,35 @@
-import java.io.*;
 import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
+import java.util.stream.Collectors;
 
-public class Solution {
+public class MissingNumbers {
 
+    public static List<Integer> missingNumbers(List<Integer> arr, List<Integer> brr) {
+        Map<Integer,Integer> map = new HashMap<>();
+        for(Integer n : brr ) {
+            if(map.containsKey(n)) {
+                map.put(n, map.get(n)+1);
+            }else {
+                map.put(n, 1);
+            }
+        }
+
+        for(Integer n : arr ) {
+            if(!map.containsKey(n)) {
+                map.put(n, 1);
+            }else {
+                map.put(n, map.get(n)-1);
+            }
+        }
+
+        return map.entrySet()
+                .stream()
+                .filter(e -> e.getValue()> 0)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
+    }
     static void missingNumbers(int[] arr, int[] brr) {
         int min = findMin(brr);
-        // If we know the min, now we can save the ocurrence of each number in an array
+        // If we know the min, now we can save the occurrence of each number in an array
         // We will use the index as a representation of a number. E.g. if the list would
         // contain elements from 200 to 300 range, if we see 205, we will increment index 5
         // by 1.
@@ -22,7 +43,7 @@ public class Solution {
 
         // Now we have a list that tells us how many times each number occur.
         // We can build the same list for A and then compare. Or we can iterate
-        // A the same way and decrement everytime we see the number.
+        // same way and decrement everytime we see the number.
         for (int i : arr) {
             index = i - min;
             occurrence[index]--;
@@ -36,7 +57,7 @@ public class Solution {
                 System.out.print(index + " ");
             }
         }
-        System.out.println("");
+        System.out.println();
     }
 
     private static int findMin(int[] brr) {

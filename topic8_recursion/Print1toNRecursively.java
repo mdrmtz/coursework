@@ -1,8 +1,12 @@
-import java.io.*;
-import java.util.*;
+import java.util.Scanner;
 
-public class Solution {
-
+public class Print1toNRecursively {
+    private static void printRecursively(int n) {
+        if (n > 0) {
+            printRecursively(n - 1);
+            System.out.print(n + " ");
+        }
+    }
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int t = in.nextInt();
@@ -10,13 +14,6 @@ public class Solution {
             int n = in.nextInt();
             printRecursively(n);
             System.out.println();
-        }
-    }
-
-    private static void printRecursively(int n) {
-        if (n > 0) {
-            printRecursively(n - 1);
-            System.out.print(n + " ");
         }
     }
 }

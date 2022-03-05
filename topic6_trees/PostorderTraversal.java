@@ -8,11 +8,22 @@ class Node {
 }
 
 */
+public class PostorderTraversal {
+    static class Node {
+        int data;
+        Node left;
+        Node right;
+    }
 
-void postOrder(Node root) {
-    if (root != null) {
-        postOrder(root.left);
-        postOrder(root.right);
-        System.out.print(root.data + " ");
+    void postOrder(Node root) {
+        if (root != null) {
+            postOrder(root.left);
+            postOrder(root.right);
+            System.out.print(root.data + " ");
+        }
+    }
+
+    public static void main(String[] args) {
+
     }
 }

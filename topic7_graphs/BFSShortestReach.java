@@ -1,37 +1,25 @@
-import java.io.*;
 import java.util.*;
 
-public class Solution {
+public class BFSShortestReach {
     private static int mN;
-    private static int mM;
     private static Integer mS;
     private static Map<Integer, Set<Integer>> mNodeToNeigh;
 
-    public static void main(String[] args) {
-        final Scanner scanner = new Scanner(System.in);
-        int numberTests = scanner.nextInt();
-        while (numberTests > 0) {
-            parseArguments(scanner);
-            computeOutput();
-            numberTests--;
-        }
-    }
-
     private static void computeOutput() {
-        Queue<Integer> queue = new LinkedList<Integer>();
+        Queue<Integer> queue = new LinkedList<>();
         Map<Integer, Integer> visitedMinDis = new HashMap<>();
         visitedMinDis.put(mS, 0);
         queue.add(mS);
 
-        while(!queue.isEmpty()) {
+        while (!queue.isEmpty()) {
             Integer element = queue.remove();
 
             if (mNodeToNeigh.get(element) != null) {
-                for(Integer neigh : mNodeToNeigh.get(element)) {
-                    if(!visitedMinDis.containsKey(neigh)) {
+                for (Integer neigh : mNodeToNeigh.get(element)) {
+                    if (!visitedMinDis.containsKey(neigh)) {
                         queue.add(neigh);
                         visitedMinDis.put(neigh, visitedMinDis.get(element) + 1);
-                    } else if(visitedMinDis.get(neigh) > visitedMinDis.get(element) + 1) {
+                    } else if (visitedMinDis.get(neigh) > visitedMinDis.get(element) + 1) {
                         visitedMinDis.put(neigh, visitedMinDis.get(element) + 1);
                     }
                 }
@@ -53,7 +41,7 @@ public class Solution {
 
     private static void parseArguments(Scanner scanner) {
         mN = scanner.nextInt();
-        mM = scanner.nextInt();
+        int mM = scanner.nextInt();
 
         mNodeToNeigh = new HashMap<>(mM);
         int x;
@@ -62,8 +50,8 @@ public class Solution {
             x = scanner.nextInt();
             y = scanner.nextInt();
             Set<Integer> neighX;
-            if(mNodeToNeigh.get(x) == null) {
-                neighX = new HashSet<Integer>();
+            if (mNodeToNeigh.get(x) == null) {
+                neighX = new HashSet<>();
             } else {
                 neighX = mNodeToNeigh.get(x);
             }
@@ -71,14 +59,24 @@ public class Solution {
             mNodeToNeigh.put(x, neighX);
 
             Set<Integer> neighY;
-            if(mNodeToNeigh.get(y) == null) {
-                neighY = new HashSet<Integer>();
+            if (mNodeToNeigh.get(y) == null) {
+                neighY = new HashSet<>();
             } else {
                 neighY = mNodeToNeigh.get(y);
             }
             neighY.add(x);
             mNodeToNeigh.put(y, neighY);
         }
-        mS = new Integer(scanner.nextInt());
+        mS = scanner.nextInt();
+    }
+
+    public static void main(String[] args) {
+        final Scanner scanner = new Scanner(System.in);
+        int numberTests = scanner.nextInt();
+        while (numberTests > 0) {
+            parseArguments(scanner);
+            computeOutput();
+            numberTests--;
+        }
     }
 }

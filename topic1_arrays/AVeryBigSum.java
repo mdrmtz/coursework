@@ -1,15 +1,9 @@
-import java.io.*;
-import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
-
-public class Solution {
+public class AVeryBigSum {
 
     /**
-    * Your solution in here. Just need to add the number in a variable type long so you
-    * don't face overflow.
-    */
+     * Your solution in here. Just need to add the number in a variable type long, so you
+     * don't face overflow.
+     */
     static long aVeryBigSum(int n, long[] ar) {
         long sum = 0;
         for (int i = 0; i < n; i++) {
@@ -18,17 +12,16 @@ public class Solution {
         return sum;
     }
 
+    static long aVeryBigSum(long[] ar) {
+        return aVeryBigSum(ar.length, ar);
+    }
+
     /**
-    * HackerRank provides this code.
-    */
+     * HackerRank provides this code.
+     */
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
-        long[] ar = new long[n];
-        for(int ar_i = 0; ar_i < n; ar_i++){
-            ar[ar_i] = in.nextLong();
-        }
-        long result = aVeryBigSum(n, ar);
+        long[] ar = new long[]{1, 2, 3, 4, 5};
+        long result = aVeryBigSum(ar.length, ar);
         System.out.println(result);
     }
 }

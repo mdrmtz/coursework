@@ -1,15 +1,31 @@
-import java.io.*;
-import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
-public class Solution {
+public class QuicksortPartI {
+
+    public static List<Integer> quickSort(List<Integer> arr) {
+        int pivotValue = arr.get(0);
+        List<Integer> left = new ArrayList<>();
+        List<Integer> right = new ArrayList<>();
+
+        for(int n : arr) {
+            if (n < pivotValue) {
+                left.add(n);
+            } else {
+                right.add(n);
+            }
+        }
+
+        left.addAll(right);
+
+        return left;
+    }
 
     static int[] quickSort(int[] arr) {
         int pivotValue = arr[0];
-        List<Integer> left = new ArrayList<Integer>();
-        List<Integer> right = new ArrayList<Integer>();
+        List<Integer> left = new ArrayList<>();
+        List<Integer> right = new ArrayList<>();
         for (int i = 1; i < arr.length; i++) {
             if (arr[i] < pivotValue) {
                 left.add(arr[i]);
@@ -34,9 +50,10 @@ public class Solution {
         for (int i = 0; i < result.length; i++) {
             System.out.print(result[i] + (i != result.length - 1 ? " " : ""));
         }
-        System.out.println("");
 
+        System.out.println();
 
+        QuicksortPartI.quickSort(List.of(8,2,3,4,5,7));
         in.close();
     }
     private static void printArray(List<Integer> ar) {
